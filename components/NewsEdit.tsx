@@ -20,6 +20,8 @@ const NewsEdit: FC = () => {
       updateNewsMutation.mutate(editedNews);
   };
 
+  if (createNewsMutation.error || updateNewsMutation.error) return <div>Error</div>
+
   return (
     <div>
       <form onSubmit={submitHandler}>

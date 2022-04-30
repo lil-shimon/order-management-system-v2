@@ -18,6 +18,7 @@ const NewsItem: FC<Props> = ({ news }) => {
   const { deleteNewsMutation } = useNewsMutation();
 
   if (deleteNewsMutation.isLoading) return <p>...Deleting</p>;
+  if (deleteNewsMutation.error) return <p>Error</p>
   return (
     <li className={"my-3"}>
       <span className={"font-bold"}>{news.content}</span>

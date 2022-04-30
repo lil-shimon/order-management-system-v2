@@ -19,6 +19,7 @@ const TaskItem: FC<Props> = ({ task }) => {
   const { deleteTaskMutation } = useTaskMutation();
 
   if (deleteTaskMutation.isLoading) return <div>...loading</div>;
+  if (deleteTaskMutation.error) return <p>Error</p>
   return (
     <li className={"my-3"}>
       <span className={"font-bold"}>{task.title}</span>

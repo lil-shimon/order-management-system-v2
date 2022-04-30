@@ -38,6 +38,9 @@ export const useTaskMutation = () => {
       }
       dispatch(resetEditedTask());
     },
+    onError: () => {
+      dispatch(resetEditedTask())
+    }
   });
 
   const updateTaskMutation = useMutation((task: EditTask) => graphQLClient.request(UPDATE_TASK, task), {
@@ -48,6 +51,9 @@ export const useTaskMutation = () => {
       }
       dispatch(resetEditedTask());
     },
+    onError: () => {
+      dispatch(resetEditedTask())
+    }
   });
 
   const deleteTaskMutation = useMutation((id: string) => graphQLClient.request(DELETE_TASK, { id: id }), {

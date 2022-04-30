@@ -39,6 +39,9 @@ export const useNewsMutation = () => {
       }
       dispatch(resetEditedNews());
     },
+    onError: () => {
+      dispatch(resetEditedNews())
+    }
   });
 
   const updateNewsMutation = useMutation((news: EditNews) => graphQLClient.request(UPDATE_NEWS, news), {
@@ -49,6 +52,9 @@ export const useNewsMutation = () => {
       }
       dispatch(resetEditedNews());
     },
+    onError: () => {
+      dispatch(resetEditedNews())
+    }
   });
 
   const deleteNewsMutation = useMutation((id: string) => graphQLClient.request(DELETE_NEWS, { id: id }), {
