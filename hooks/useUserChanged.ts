@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import firebase from "../firebaseConfig";
 import { useRouter } from "next/router";
 import Cookie from "universal-cookie";
-import { has } from "immer/dist/utils/common";
 
 // snapshotのsubscriptionをunsubscriptionする
 // logout時使用する
