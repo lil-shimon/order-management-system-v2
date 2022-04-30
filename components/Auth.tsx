@@ -48,11 +48,13 @@ export const Auth: FC = () => {
       onClick={toggleMode}
       className={"my-5 h-5 w-5 text-blue-500 cursor-pointer"}
     />
-    {user && (<Link href={"/tasks"}>
-      <div className={"flex items-center cursor-pointer my-3"}>
-        <ChevronDoubleRightIcon className={"h-5 w-5 mx-1 text-blue-500"} />
-        <span>to tasks page</span>
-      </div>
-    </Link>)}
+    {user && (
+      <Link href={"/tasks"}>
+        <div className={"flex items-center cursor-pointer my-3"}>
+          <ChevronDoubleRightIcon className={"h-5 w-5 mx-1 text-blue-500"} />
+          <span>to tasks page</span>
+        </div>
+      </Link>
+    )}
   </>);
 };

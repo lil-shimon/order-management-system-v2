@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import firebase from "../firebaseConfig";
 import { useRouter } from "next/router";
 import Cookie from "universal-cookie";
+import { has } from "immer/dist/utils/common";
 
 // snapshotのsubscriptionをunsubscriptionする
 // logout時使用する
@@ -14,7 +15,7 @@ export let unSubMeta: () => void;
 export const useUserChanged = () => {
   const cookie = new Cookie();
   const router = useRouter();
-  const HASURA_TOKEN_KEY = "https//hasura.io/jwt/claims";
+  const HASURA_TOKEN_KEY = "https://hasura.io/jwt/claims";
 
   useEffect(() => {
     // ユーザー情報が変化
