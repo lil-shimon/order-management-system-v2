@@ -25,7 +25,7 @@ export const uiSlice = createSlice({
     }, resetEditedTask: (state) => {
       state.editedTask = initialState.editedTask;
     }, setEditedNews: (state, action: PayloadAction<EditNews>) => {
-      state.editedNews = initialState.editedNews;
+      state.editedNews = action.payload;
     }, resetEditedNews: (state) => {
       state.editedNews = initialState.editedNews;
     },

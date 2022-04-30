@@ -14,15 +14,11 @@ const NewsList: FC = () => {
   if (status === "error") return <div>Error</div>;
 
   return (
-    <>
+    <ul>
       {data?.map((news) => (
-        <div key={news.id}>
-          <ul>
-            <NewsItemMemo news={news} />
-          </ul>
-        </div>
+        <NewsItemMemo news={news} key={news.id}/>
       ))}
-    </>
+    </ul>
   );
 };
 

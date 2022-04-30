@@ -10,6 +10,7 @@ import firebase from "../firebaseConfig";
 import { ChevronDoubleLeftIcon, LogoutIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 import { NewsListMemo } from "../components/NewsList";
+import { NewsEditMemo } from "../components/NewsEdit";
 
 const Tasks: FC = (props) => {
   const router = useRouter();
@@ -32,7 +33,11 @@ const Tasks: FC = (props) => {
       <p className={"mt-10 mb-5 text-blue-500 "}>
         News Edit
       </p>
-      <NewsListMemo />
+      <div className={"grid grid-cols-2 gap-40"}>
+        <NewsListMemo />
+        <NewsEditMemo />
+      </div>
+
       <Link href={"/"}>
         <div className={"mt-20 flex items-center cursor-pointer"}>
           <ChevronDoubleLeftIcon className={"h-5 w-5 mx-1 text-blue-500"} />
