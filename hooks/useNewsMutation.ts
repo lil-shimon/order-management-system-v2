@@ -57,7 +57,10 @@ export const useNewsMutation = () => {
       if (prev) {
         queryClient.setQueryData<News[]>("news", prev.filter((news) => news.id !== variables));
       }
-      dispatch(resetEditedNews())
+      dispatch(resetEditedNews());
     },
   });
+  return {
+    createNewsMutation, updateNewsMutation, deleteNewsMutation,
+  };
 };

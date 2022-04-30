@@ -56,8 +56,11 @@ export const useTaskMutation = () => {
       if (prevTodos) {
         queryClient.setQueryData<Task[]>("tasks", prevTodos.filter((task) => task.id !== variables));
       }
-      dispatch(resetEditedTask())
+      dispatch(resetEditedTask());
     },
   });
 
+  return {
+    createTaskMutation, updateTaskMutation, deleteTaskMutation,
+  };
 };
