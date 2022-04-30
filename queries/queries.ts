@@ -32,7 +32,7 @@ mutation UpdateNews($id: uuid!, $content: String!) {
     created_at
   }
 }
-`
+`;
 
 export const DELETE_NEWS = gql`
 mutation DeleteNews($id: uuid!) {
@@ -41,7 +41,7 @@ mutation DeleteNews($id: uuid!) {
     content
   }
 }
-`
+`;
 
 export const GET_TASKS = gql`
 query GetTasks {
@@ -52,7 +52,7 @@ query GetTasks {
     user_id
   }
 }
-`
+`;
 
 export const CREATE_TASK = gql`
 mutation CreateTask($title: String!) {
@@ -62,7 +62,8 @@ mutation CreateTask($title: String!) {
     created_at
     user_id
   }
-`
+}
+`;
 
 export const UPDATE_TASK = gql`
 mutation UpdateTask($id: uuid!, $title: String!) {
@@ -73,7 +74,7 @@ mutation UpdateTask($id: uuid!, $title: String!) {
     user_id
   }
 }
-`
+`;
 
 export const DELETE_TASK = gql`
 mutation DeleteTask($id: uuid!) {
@@ -82,4 +83,4 @@ mutation DeleteTask($id: uuid!) {
     title
   }
 }
-`
+`;

@@ -11,6 +11,8 @@ import { ChevronDoubleLeftIcon, LogoutIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 import { NewsListMemo } from "../components/NewsList";
 import { NewsEditMemo } from "../components/NewsEdit";
+import { TaskListMemo } from "../components/TaskList";
+import { TaskEditMemo } from "../components/TaskEdit";
 
 const Tasks: FC = (props) => {
   const router = useRouter();
@@ -36,6 +38,15 @@ const Tasks: FC = (props) => {
       <div className={"grid grid-cols-2 gap-40"}>
         <NewsListMemo />
         <NewsEditMemo />
+      </div>
+
+      <p className={"mt-10 mb-5 text-blue-500 "}>
+        Task Edit
+      </p>
+
+      <div className={"grid grid-cols-2 gap-40"}>
+        <TaskListMemo />
+        <TaskEditMemo />
       </div>
 
       <Link href={"/"}>
