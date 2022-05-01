@@ -26,3 +26,17 @@ export interface NavigationState {
 }
 
 export type Sidenav = Pick<NavigationState, "name" | "href">
+
+export interface Product {
+  id: string;
+  product_id: number;
+  m_product_type_id: string;
+  name: string;
+  unit: string;
+  unit_price: number;
+  note?: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export type EditProduct = Pick<Product, "id" | "m_product_type_id" | "name" | "unit" | "unit_price" | "note">
