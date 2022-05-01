@@ -84,3 +84,47 @@ mutation DeleteTask($id: uuid!) {
   }
 }
 `;
+
+export const GET_PRODUCTS_BY_TYPE = gql`
+query GetProducts($m_product_type_id: uuid!) {
+  products(where: {m_product_type_id: {_eq: $m_product_type_id}}) {
+    created_at
+    id
+    name
+    note
+    unit
+    unit_price
+  }
+}
+`;
+
+export const CREATE_PRODUCT = gql`
+mutation CreateProduct($m_product_type_id: uuid!, $name: String!, $note: String, $unit: String!, $unit_price: int!) {
+  insert_products_one(object: {m_product_type_id: $m_product_type_id, name: $name, note: $note, unit: $unit, unit_price: $unit_price}) {
+    name
+    note
+    unit
+    unit_price
+  }
+}
+`;
+
+export const UPDATE_PRODUCT = gql`
+mutation UpdateProduct($id: uuid!, $m_product_type_id: uuid!, $name: String!, $note: String, $unit: String, $unit_price: int!) {
+  update_products_by_pk(pk_columns: {id: $id}, _set: {name: $name, note: $note, m_product_type_id: $m_product_type_id, unit: $unit, unit_price: $unit_price}) {
+    name
+    note
+    unit
+    unit_price
+  }
+}
+`;
+
+export const DELETE_PRODUCT = gql`
+mutation DeleteProduct($id: uuid) {
+  delete_products_by_pk(id: $id) {
+    name
+    id
+  }
+}
+`;
