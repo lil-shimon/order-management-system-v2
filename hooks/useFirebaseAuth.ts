@@ -5,11 +5,13 @@
 
 import { useState, useCallback, ChangeEvent, FormEvent } from "react";
 import firebase from "../firebaseConfig";
+import { useRouter } from "next/router";
 
 export const useFirebaseAuth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLogin, setIsLogin] = useState(true);
+  const router = useRouter()
 
   const emailChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -38,6 +40,7 @@ export const useFirebaseAuth = () => {
     if (isLogin) {
       try {
         await firebase.auth().signInWithEmailAndPassword(email, password);
+        await router.push("/tasks")
       } catch ({ message }) {
         alert(message);
       }
@@ -45,6 +48,7 @@ export const useFirebaseAuth = () => {
     } else {
       try {
         await firebase.auth().createUserWithEmailAndPassword(email, password);
+        await router.push("/tasks")
       } catch ({ message }) {
         alert(message);
       }
