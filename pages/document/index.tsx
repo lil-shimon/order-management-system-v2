@@ -5,11 +5,12 @@
 
 import { FC } from "react";
 import { Layout } from "../../components/Layout";
+import { DocumentComponent } from "../../components/templete/Document";
 
 const Document: FC = () => {
   return (
     <Layout title={"document"}>
-      <div>Document</div>
+      <DocumentComponent />
     </Layout>
   );
 };
