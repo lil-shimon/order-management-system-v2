@@ -23,7 +23,7 @@ export const Layout: VFC<Props> = ({ children, title = "Welcome to Nextjs" }) =>
       {children}
     </main>
     <footer className={"w-full h-24 flex justify-center items-center border-t"}>
-      <a className={"flex items-center"}
+      <a className={"flex items-center text-gray-600 dark:text-gray-300"}
          href={"https://github.com/lil-shimon"}
          target={"_blank"}
          rel="noreferrer noopener"
