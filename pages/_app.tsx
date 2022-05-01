@@ -7,6 +7,7 @@ import { useUserChanged } from "../hooks/useUserChanged";
 import { Provider } from "react-redux";
 import { store } from "../selector/store";
 import { Hydrate } from "react-query";
+import { ThemeProvider } from "next-themes";
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -27,7 +28,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <Provider store={store}>
-          <Component {...pageProps} />
+          <ThemeProvider attribute={"class"} defaultTheme={"dark"}>
+            <Component {...pageProps} />
+          </ThemeProvider>
         </Provider>
       </Hydrate>
       <ReactQueryDevtools />
