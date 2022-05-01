@@ -4,6 +4,7 @@
 
 import { ReactNode, VFC } from "react";
 import Head from "next/head";
+import Header from "./organisms/Header";
 
 interface Props {
   children: ReactNode;
@@ -16,6 +17,7 @@ export const Layout: VFC<Props> = ({ children, title = "Welcome to Nextjs" }) =>
       <title>{title}</title>
     </Head>
     <header>
+      <Header />
     </header>
     <main className={"flex flex-1 flex-col justify-center items-center w-screen"}>
       {children}
