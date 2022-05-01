@@ -4,18 +4,12 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../selector/store";
-import { EditNews, EditTask } from "../types/types";
+import { EditNews, EditTask, NavigationState } from "../types/types";
 
 export interface uiState {
   editedTask: EditTask;
   editedNews: EditNews;
-  navigation: navigationState[];
-}
-
-export interface navigationState {
-  name: string;
-  href: string;
-  current: boolean;
+  navigation: NavigationState[];
 }
 
 const initialState: uiState = {
@@ -43,7 +37,7 @@ export const uiSlice = createSlice({
     }, resetEditedNews: (state) => {
       state.editedNews = initialState.editedNews;
     },
-    setNavigation: (state, action: PayloadAction<navigationState[]>) => {
+    setNavigation: (state, action: PayloadAction<NavigationState[]>) => {
       state.navigation = action.payload;
     },
   },

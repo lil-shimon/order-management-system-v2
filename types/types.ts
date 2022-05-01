@@ -18,3 +18,11 @@ export interface Task {
 }
 
 export type EditTask = Pick<Task, "id" | "title">
+
+export interface NavigationState {
+  name: string;
+  href: string;
+  current: boolean;
+}
+
+export type Sidenav = Pick<NavigationState, "name" | "href">

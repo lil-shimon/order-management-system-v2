@@ -4,10 +4,12 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import uiReducer from "../slicers/uiSlice";
+import documentReducer from "../slicers/documentSlicer"
 
 export const store = configureStore({
   reducer: {
     ui: uiReducer,
+    document: documentReducer
   },
 });
 
