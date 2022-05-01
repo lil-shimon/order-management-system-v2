@@ -2,9 +2,8 @@
  * Copyright (c) 2022. Kenta Shimosawa
  */
 
-import { ChevronDoubleRightIcon, LockClosedIcon, SwitchVerticalIcon } from "@heroicons/react/solid";
+import { LockClosedIcon, SwitchVerticalIcon } from "@heroicons/react/solid";
 import { FC } from "react";
-import Link from "next/link";
 import firebase from "../../firebaseConfig";
 import { useFirebaseAuth } from "../../hooks/useFirebaseAuth";
 
@@ -26,7 +25,8 @@ export const Auth: FC = () => {
               src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
               alt="Workflow"
             />
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">{isLogin ? "アカウント情報でログイン" : "新規アカウントを作成する"}</h2>
+            <h2
+              className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-gray-400">{isLogin ? "アカウント情報でログイン" : "新規アカウントを作成する"}</h2>
             <div className={"items-center flex justify-center"}>
               <SwitchVerticalIcon onClick={toggleMode}
                                   className={"my-5 h-5 w-5 text-blue-500 cursor-pointer items-center"} />
@@ -45,7 +45,7 @@ export const Auth: FC = () => {
                   type="email"
                   autoComplete="email"
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-400 placeholder-gray-500 text-gray-900 dark:text-gray-400 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Email address"
                   value={email}
                   onChange={(e) => emailChange(e)}
@@ -61,7 +61,7 @@ export const Auth: FC = () => {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-400 placeholder-gray-500 text-gray-900 dark:text-gray-400 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Password"
                   value={password}
                   onChange={(e) => passwordChange(e)}
