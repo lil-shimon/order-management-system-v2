@@ -38,7 +38,6 @@ export const useUserChanged = () => {
         // ページへリダイレクトさせる
         if (hasuraClaims) {
           cookie.set("token", token, { path: "/" });
-          await router.push("/tasks");
         }
         // setCustomUserClaimが完了していない時
         if (!hasuraClaims) {
@@ -64,7 +63,6 @@ export const useUserChanged = () => {
               // しっかりcustomClaimの値が取得できている場合は取得したjwtTokenをcookieにセットし
               // ページへリダイレクトさせる
               cookie.set("token", tokenSnap, { path: "/" });
-              await router.push("/tasks");
             }
           });
         }

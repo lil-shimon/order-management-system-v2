@@ -9,6 +9,13 @@ import { EditNews, EditTask } from "../types/types";
 export interface uiState {
   editedTask: EditTask;
   editedNews: EditNews;
+  navigation: navigationState[];
+}
+
+export interface navigationState {
+  name: string;
+  href: string;
+  current: boolean;
 }
 
 const initialState: uiState = {
@@ -17,7 +24,14 @@ const initialState: uiState = {
   }, editedNews: {
     id: "", content: "",
   },
+  navigation: [
+    { name: "Dashboard", href: "/dashboard", current: true },
+    { name: "Documents", href: "/document", current: false },
+    { name: "Orders", href: "/order", current: false },
+    { name: "Maintenance", href: "/maintenance", current: false },
+  ],
 };
+
 export const uiSlice = createSlice({
   name: "ui", initialState, reducers: {
     setEditedTask: (state, action: PayloadAction<EditTask>) => {
@@ -29,14 +43,18 @@ export const uiSlice = createSlice({
     }, resetEditedNews: (state) => {
       state.editedNews = initialState.editedNews;
     },
+    setNavigation: (state, action: PayloadAction<navigationState[]>) => {
+      state.navigation = action.payload;
+    },
   },
 });
 
 export const {
-  setEditedTask, resetEditedTask, setEditedNews, resetEditedNews,
+  setEditedTask, resetEditedTask, setEditedNews, resetEditedNews, setNavigation,
 } = uiSlice.actions;
 
-export const selectTask = (state: RootState) => state.ui.editedTask
-export const selectNews = (state: RootState) => state.ui.editedNews
+export const selectTask = (state: RootState) => state.ui.editedTask;
+export const selectNews = (state: RootState) => state.ui.editedNews;
+export const navigationState = (state: RootState) => state.ui.navigation;
 
-export default uiSlice.reducer
+export default uiSlice.reducer;
