@@ -2,7 +2,7 @@
  * Copyright (c) 2022. Kenta Shimosawa
  */
 
-import { MonitorCreateComponentMemo } from "../../components/templete/Monitor/Create";
+import { MonitorCreateComponentMemo } from "../../components/templete/Product/MonitorCreate";
 import { Layout } from "../../components/Layout";
 
 const MonitorCreate = () => {
