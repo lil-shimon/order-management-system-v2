@@ -5,10 +5,10 @@
 import { useDispatch } from "react-redux";
 import { useMutation, useQueryClient } from "react-query";
 import { graphQLClient, GraphQLSetHeader } from "../utils/api";
-import { resetMonitor, setMonitor } from "../slicers/documentSlicer";
+import { setMonitor } from "../slicers/documentSlicer";
 import { EditProduct, Product } from "../types/types";
 import { CREATE_PRODUCT, UPDATE_PRODUCT } from "../queries/queries";
-import { getProductTypeFromTypeId, resetProductHanlder } from "../utils/product";
+import { getProductTypeFromTypeId, resetProductHandler } from "../utils/product";
 
 export const useProductMutation = () => {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ export const useProductMutation = () => {
       const prev = queryClient.getQueryData<Product[]>(productType);
       if (prev)
         queryClient.setQueriesData<Product[]>(productType, [...prev, res.insert_products_one]);
-      dispatch(resetProductHanlder(res.insert_products_one.m_product_type_id));
+      dispatch(resetProductHandler(res.insert_products_one.m_product_type_id));
     },
     onError: () => {
       alert("Error");
