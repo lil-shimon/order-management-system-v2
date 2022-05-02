@@ -3,14 +3,15 @@
  */
 
 import { FC } from "react";
-import { useQueryProducts } from "../../../hooks/useQueryProducts";
+import { DocumentPageLayout } from "../Document/Layout";
+import { MonitorListMemo } from "../../organisms/Monitors/list";
+import { ProductProps } from "../../../types/types";
 
-export const MonitorComponent: FC = () => {
+export const MonitorComponent: FC<ProductProps> = ({ data }) => {
 
-  const { status, data } = useQueryProducts("55793ba1-c771-4e35-bb37-3db1f9f76683");
   return (
-    <>
-      <div>monitor</div>
-    </>
+    <DocumentPageLayout>
+      <MonitorListMemo data={data} />
+    </DocumentPageLayout>
   );
 };
