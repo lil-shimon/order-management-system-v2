@@ -7,6 +7,8 @@ import { EditProduct } from "../../../types/types";
 import { useDispatch } from "react-redux";
 import { setMonitor } from "../../../slicers/documentSlicer";
 import { useProductMutation } from "../../../hooks/useProductMutation";
+import { DarkButtonMemo } from "../../atoms/Buttons/Button";
+import { getPageUrlByTypeId } from "../../../utils/product";
 
 interface Props {
   product: EditProduct;
@@ -15,12 +17,15 @@ interface Props {
 const MonitorFormScreen: FC<Props> = ({ product }) => {
 
   const dispatch = useDispatch();
-  const { createProductMutation } = useProductMutation();
+  const { createProductMutation, updateProductMutation } = useProductMutation();
+  const url = getPageUrlByTypeId(product.m_product_type_id);
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (product.id === "")
       createProductMutation.mutate(product);
+    if (product.id !== "")
+      updateProductMutation.mutate(product);
   };
 
   return (
@@ -71,9 +76,16 @@ const MonitorFormScreen: FC<Props> = ({ product }) => {
           />
         </div>
       </div>
-      <button type="submit"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit
-      </button>
+      <div className={"flex"}>
+        <button type="submit"
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+          Submit
+          Submit
+        </button>
+        <div className={"ml-2"}>
+          <DarkButtonMemo href={url} label={"Return"} />
+        </div>
+      </div>
     </form>
   );
 };

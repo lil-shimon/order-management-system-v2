@@ -7,7 +7,7 @@ import { useMutation, useQueryClient } from "react-query";
 import { graphQLClient, GraphQLSetHeader } from "../utils/api";
 import { resetProduct, setMonitor } from "../slicers/documentSlicer";
 import { EditProduct, Product } from "../types/types";
-import { CREATE_PRODUCT } from "../queries/queries";
+import { CREATE_PRODUCT, UPDATE_PRODUCT } from "../queries/queries";
 import { getProductTypeFromTypeId } from "../utils/product";
 
 export const useProductMutation = () => {
@@ -39,8 +39,27 @@ export const useProductMutation = () => {
     },
   });
 
+  const updateProductMutation = useMutation((product: EditProduct) => graphQLClient.request(UPDATE_PRODUCT, {
+      id: product.id,
+      m_product_type_id: product.m_product_type_id,
+      name: product.name,
+      note: product.note,
+      unit: product.unit,
+      unit_price: product.unit_price,
+    }), {
+      onSuccess: (res, variables) => {
+        const productType = getProductTypeFromTypeId(variables.m_product_type_id);
+        const prev = queryClient.getQueryData<Product[]>(productType);
+        if (prev)
+          queryClient.setQueryData<Product[]>(productType, prev.map((product) => product.id === variables.id ? res.update_product_by_ok : product));
+        dispatch(resetProduct());
+      },
+    },
+  );
+
   return {
     handleChangeValue,
     createProductMutation,
+    updateProductMutation,
   };
 };
