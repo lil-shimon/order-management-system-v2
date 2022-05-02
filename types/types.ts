@@ -34,7 +34,7 @@ export interface Product {
   name: string;
   unit: string;
   unit_price: number;
-  note?: string | null;
+  note?: string;
   created_at: string;
   updated_at: string;
 }
