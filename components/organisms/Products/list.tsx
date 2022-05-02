@@ -8,9 +8,9 @@ import { ProductProps } from "../../../types/types";
 import { ButtonMemo } from "../../atoms/Buttons/Button";
 import { useQueryProducts } from "../../../hooks/useQueryProducts";
 
-const MonitorList: FC<ProductProps> = ({ data }) => {
+const ProductList: FC<ProductProps> = ({ data }) => {
 
-  const { handleMoveToEditPage } = useQueryProducts();
+  const { handleMoveToEditPage, currentUrl } = useQueryProducts();
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -30,7 +30,7 @@ const MonitorList: FC<ProductProps> = ({ data }) => {
                  placeholder="Search for items" />
         </div>
         <div className={"absolute right-2"}>
-          <ButtonMemo href={"/monitor/create"} label={"create"} />
+          <ButtonMemo href={`${currentUrl}/create`} label={"add"} />
         </div>
       </div>
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -80,4 +80,4 @@ const MonitorList: FC<ProductProps> = ({ data }) => {
   );
 };
 
-export const MonitorListMemo = memo(MonitorList);
+export const ProductListMemo = memo(ProductList);

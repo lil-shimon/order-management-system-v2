@@ -3,7 +3,7 @@
  */
 
 import { DocumentPageLayout } from "../Document/Layout";
-import { MonitorFormScreenMemo } from "../../organisms/Monitors/FormScreen";
+import { ProductFormScreenMemo } from "../../organisms/Products/FormScreen";
 import { memo } from "react";
 import { monitorState } from "../../../slicers/documentSlicer";
 import { useSelector } from "react-redux";
@@ -14,7 +14,7 @@ const MonitorCreateComponent = () => {
 
   return (
     <DocumentPageLayout>
-      <MonitorFormScreenMemo product={monitor} />
+      <ProductFormScreenMemo product={monitor} />
     </DocumentPageLayout>
   );
 };

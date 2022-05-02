@@ -5,10 +5,10 @@
 import { useDispatch } from "react-redux";
 import { useMutation, useQueryClient } from "react-query";
 import { graphQLClient, GraphQLSetHeader } from "../utils/api";
-import { resetProduct, setMonitor } from "../slicers/documentSlicer";
+import { resetMonitor, setMonitor } from "../slicers/documentSlicer";
 import { EditProduct, Product } from "../types/types";
 import { CREATE_PRODUCT, UPDATE_PRODUCT } from "../queries/queries";
-import { getProductTypeFromTypeId } from "../utils/product";
+import { getProductTypeFromTypeId, resetProductHanlder } from "../utils/product";
 
 export const useProductMutation = () => {
   const dispatch = useDispatch();
@@ -32,10 +32,10 @@ export const useProductMutation = () => {
       const prev = queryClient.getQueryData<Product[]>(productType);
       if (prev)
         queryClient.setQueriesData<Product[]>(productType, [...prev, res.insert_products_one]);
-      dispatch(resetProduct());
+      dispatch(resetProductHanlder(res.insert_products_one.m_product_type_id));
     },
     onError: () => {
-      dispatch(resetProduct());
+      alert("Error");
     },
   });
 
@@ -52,7 +52,6 @@ export const useProductMutation = () => {
         const prev = queryClient.getQueryData<Product[]>(productType);
         if (prev)
           queryClient.setQueryData<Product[]>(productType, prev.map((product) => product.id === variables.id ? res.update_product_by_ok : product));
-        dispatch(resetProduct());
       },
     },
   );

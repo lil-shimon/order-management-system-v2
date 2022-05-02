@@ -4,14 +4,14 @@
 
 import { FC } from "react";
 import { DocumentPageLayout } from "../Document/Layout";
-import { MonitorListMemo } from "../../organisms/Monitors/list";
+import { ProductListMemo } from "../../organisms/Products/list";
 import { ProductProps } from "../../../types/types";
 
-export const MonitorComponent: FC<ProductProps> = ({ data }) => {
+export const ProductComponent: FC<ProductProps> = ({ data }) => {
 
   return (
     <DocumentPageLayout>
-      <MonitorListMemo data={data} />
+      <ProductListMemo data={data} />
     </DocumentPageLayout>
   );
 };

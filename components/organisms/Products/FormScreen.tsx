@@ -5,10 +5,10 @@
 import { FC, FormEvent, memo } from "react";
 import { EditProduct } from "../../../types/types";
 import { useDispatch } from "react-redux";
-import { setMonitor } from "../../../slicers/documentSlicer";
+import { setMeasurement, setMonitor } from "../../../slicers/documentSlicer";
 import { useProductMutation } from "../../../hooks/useProductMutation";
 import { DarkButtonMemo } from "../../atoms/Buttons/Button";
-import { getPageUrlByTypeId } from "../../../utils/product";
+import { getPageUrlByTypeId, getProductStateHandler, MEASUREMENT_TYPE, MONITOR_TYPE } from "../../../utils/product";
 
 interface Props {
   product: EditProduct;
@@ -28,6 +28,8 @@ const MonitorFormScreen: FC<Props> = ({ product }) => {
       updateProductMutation.mutate(product);
   };
 
+  const setProductState = getProductStateHandler(product.m_product_type_id);
+
   return (
     <form onSubmit={submitHandler}>
       <div className="grid gap-6 mb-6 lg:grid-cols-2">
@@ -41,7 +43,7 @@ const MonitorFormScreen: FC<Props> = ({ product }) => {
                  placeholder="Product Name"
                  required
                  value={product.name}
-                 onChange={(e) => dispatch(setMonitor({ ...product, name: e.target.value }))}
+                 onChange={(e) => dispatch(setProductState({ ...product, name: e.target.value }))}
           />
         </div>
         <div>
@@ -51,7 +53,7 @@ const MonitorFormScreen: FC<Props> = ({ product }) => {
           <input type="number" id="last_name"
                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                  value={product.unit_price}
-                 onChange={(e) => dispatch(setMonitor({ ...product, unit_price: Number(e.target.value) }))}
+                 onChange={(e) => dispatch(setProductState({ ...product, unit_price: Number(e.target.value) }))}
                  placeholder="Product's Price" required />
         </div>
         <div>
@@ -62,7 +64,7 @@ const MonitorFormScreen: FC<Props> = ({ product }) => {
           <input type="text" id="unit"
                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                  value={product.unit}
-                 onChange={(e) => dispatch(setMonitor({ ...product, unit: e.target.value }))}
+                 onChange={(e) => dispatch(setProductState({ ...product, unit: e.target.value }))}
                  placeholder="Product's Unit" required />
         </div>
         <div>
@@ -71,7 +73,7 @@ const MonitorFormScreen: FC<Props> = ({ product }) => {
           </label>
           <input type="text" id="note"
                  value={product.note}
-                 onChange={(e) => dispatch(setMonitor({ ...product, note: e.target.value }))}
+                 onChange={(e) => dispatch(setProductState({ ...product, note: e.target.value }))}
                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
@@ -79,7 +81,6 @@ const MonitorFormScreen: FC<Props> = ({ product }) => {
       <div className={"flex"}>
         <button type="submit"
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-          Submit
           Submit
         </button>
         <div className={"ml-2"}>
@@ -90,4 +91,4 @@ const MonitorFormScreen: FC<Props> = ({ product }) => {
   );
 };
 
-export const MonitorFormScreenMemo = memo(MonitorFormScreen);
+export const ProductFormScreenMemo = memo(MonitorFormScreen);

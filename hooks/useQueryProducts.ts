@@ -5,12 +5,11 @@
 
 import { Product } from "../types/types";
 import { GET_PRODUCT_BY_ID, GET_PRODUCTS_BY_TYPE } from "../queries/queries";
-import { endpoint, graphQLClient, GraphQLSetHeader } from "../utils/api";
-import { QueryClient, useQuery } from "react-query";
+import { endpoint } from "../utils/api";
 import { request } from "graphql-request";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { setMonitor } from "../slicers/documentSlicer";
+import { getProductStateHandler } from "../utils/product";
 
 interface ProductRes {
   products: Product[];
@@ -39,14 +38,17 @@ export const useQueryProducts = () => {
 
   const dispatch = useDispatch();
   const router = useRouter();
-  const queryClient = new QueryClient();
+
+  const currentUrl = router.pathname;
 
   const handleMoveToEditPage = (data: Product) => {
-    dispatch(setMonitor(data));
-    router.push(`/monitor/${data.id}`);
+    const setProduct = getProductStateHandler(data.m_product_type_id);
+    dispatch(setProduct(data));
+    router.push(`${currentUrl}/${data.id}`);
   };
 
   return {
     handleMoveToEditPage,
+    currentUrl,
   };
 };

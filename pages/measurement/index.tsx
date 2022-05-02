@@ -6,25 +6,27 @@ import { GetStaticProps, NextPage } from "next";
 import { Layout } from "../../components/Layout";
 import { dehydrate, QueryClient, useQueryClient } from "react-query";
 import { fetchProduct } from "../../hooks/useQueryProducts";
-import { Product } from "../../types/types";
+import { MEASUREMENT_TYPE } from "../../utils/product";
 import { ProductComponent } from "../../components/templete/Product";
+import { Product } from "../../types/types";
 
-const Monitor: NextPage = () => {
+const Measurement: NextPage = () => {
+
   const queryClient = useQueryClient();
-  const data = queryClient.getQueryData<Product[]>("monitors");
+  const data = queryClient.getQueryData<Product[]>("measurements");
+
   return (
-    <Layout title={"monitor"}>
+    <Layout title={"measurement"}>
       <ProductComponent data={data} />
     </Layout>
   );
 };
-
-export default Monitor;
+export default Measurement;
 
 export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
-  const typeId = "55793ba1-c771-4e35-bb37-3db1f9f76683";
-  await queryClient.fetchQuery("monitors", () => fetchProduct(typeId));
+  await queryClient.fetchQuery("measurements", () => fetchProduct(MEASUREMENT_TYPE));
+
   return {
     props: {
       dehydratedState: dehydrate(queryClient),

@@ -2,20 +2,19 @@
  * Copyright (c) 2022. Kenta Shimosawa
  */
 
-import { Layout } from "../../components/Layout";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { MonitorCreateComponentMemo } from "../../components/templete/Product/MonitorCreate";
+import { Layout } from "../../components/Layout";
+import { MeasurementCreateComponentMemo } from "../../components/templete/Product/MeasurementCreate";
 
-const MonitorShow: NextPage = () => {
-
+const MeasurementShow: NextPage = () => {
   return (
-    <Layout title={"monitor"}>
-      <MonitorCreateComponentMemo />
+    <Layout title={"measurement"}>
+      <MeasurementCreateComponentMemo />
     </Layout>
   );
 };
 
-export default MonitorShow;
+export default MeasurementShow;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {

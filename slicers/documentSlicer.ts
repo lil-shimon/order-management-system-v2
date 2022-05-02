@@ -5,10 +5,12 @@
 import { EditProduct, Sidenav } from "../types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../selector/store";
+import { MEASUREMENT_TYPE } from "../utils/product";
 
 export interface DocumentState {
   sidenav: Sidenav[];
   monitor: EditProduct;
+  measurement: EditProduct;
 }
 
 const initialState: DocumentState = {
@@ -29,6 +31,14 @@ const initialState: DocumentState = {
     unit_price: 0,
     note: "",
   },
+  measurement: {
+    id: "",
+    m_product_type_id: MEASUREMENT_TYPE,
+    name: "",
+    unit: "",
+    unit_price: 0,
+    note: "",
+  },
 };
 
 export const documentSlice = createSlice({
@@ -39,8 +49,14 @@ export const documentSlice = createSlice({
     setMonitor: (state, action: PayloadAction<EditProduct>) => {
       state.monitor = action.payload;
     },
-    resetProduct: (state) => {
+    resetMonitor: (state) => {
       state.monitor = initialState.monitor;
+    },
+    setMeasurement: (state, action: PayloadAction<EditProduct>) => {
+      state.measurement = action.payload;
+    },
+    resetMeasurement: (state) => {
+      state.measurement = initialState.measurement;
     },
   },
 });
@@ -48,10 +64,13 @@ export const documentSlice = createSlice({
 export const {
   setSidenav,
   setMonitor,
-  resetProduct,
+  resetMonitor,
+  setMeasurement,
+  resetMeasurement,
 } = documentSlice.actions;
 
 export const sidenavState = (state: RootState) => state.document.sidenav;
 export const monitorState = (state: RootState) => state.document.monitor;
+export const measurementState = (state: RootState) => state.document.measurement;
 
 export default documentSlice.reducer;
