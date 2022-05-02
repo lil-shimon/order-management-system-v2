@@ -27,3 +27,5 @@ export const resetProductHanlder = (typeId: string) => {
 
 export const MONITOR_TYPE = "55793ba1-c771-4e35-bb37-3db1f9f76683";
 export const MEASUREMENT_TYPE = "4df08462-1fc8-44c0-9662-74249f55cf1d";
+export const JITAN_TYPE = "83e4c2b8-6853-449c-b86a-7a78f87b9c9d"
+export const OTHER_TYPE = "348bc3e8-52bc-474e-984a-a7422d589dca"
