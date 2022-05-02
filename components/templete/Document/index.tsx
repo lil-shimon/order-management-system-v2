@@ -3,17 +3,14 @@
  */
 
 import { FC } from "react";
-import { SidenavMemo } from "../../organisms/Sidenav";
 import { DocumentListMemo } from "../../organisms/Documents/list";
+import { DocumentPageLayout } from "./Layout";
 
 export const DocumentComponent: FC = () => {
 
   return (
-    <div className={"flex flex-row w-full px-20"}>
-      <SidenavMemo />
-      <div className={"ml-20 w-full"}>
-        <DocumentListMemo />
-      </div>
-    </div>
+    <DocumentPageLayout>
+      <DocumentListMemo />
+    </DocumentPageLayout>
   );
 };

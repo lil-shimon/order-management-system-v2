@@ -5,15 +5,17 @@
 
 import { Product } from "../types/types";
 import { GET_PRODUCTS_BY_TYPE } from "../queries/queries";
-import { graphQLClient, GraphQLSetHeader } from "../utils/api";
+import { endpoint, graphQLClient, GraphQLSetHeader } from "../utils/api";
 import { useQuery } from "react-query";
+import { request } from "graphql-request";
 
 interface ProductRes {
   products: Product[];
 }
 
-const fetchProduct = async (typeId: string) => {
-  const { products: data } = await graphQLClient.request<ProductRes>(GET_PRODUCTS_BY_TYPE, { m_product_type_id: typeId });
+export const fetchProduct = async (typeId: string) => {
+  // @ts-ignore
+  const { products: data } = await request<ProductRes>(endpoint, GET_PRODUCTS_BY_TYPE, { m_product_type_id: typeId });
   return data;
 };
 

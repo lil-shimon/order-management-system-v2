@@ -40,3 +40,7 @@ export interface Product {
 }
 
 export type EditProduct = Pick<Product, "id" | "m_product_type_id" | "name" | "unit" | "unit_price" | "note">
+
+export interface ProductProps {
+  data?: Product[];
+}
