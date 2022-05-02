@@ -4,13 +4,20 @@
 
 
 import { Product } from "../types/types";
-import { GET_PRODUCTS_BY_TYPE } from "../queries/queries";
+import { GET_PRODUCT_BY_ID, GET_PRODUCTS_BY_TYPE } from "../queries/queries";
 import { endpoint, graphQLClient, GraphQLSetHeader } from "../utils/api";
-import { useQuery } from "react-query";
+import { QueryClient, useQuery } from "react-query";
 import { request } from "graphql-request";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import { setMonitor } from "../slicers/documentSlicer";
 
 interface ProductRes {
   products: Product[];
+}
+
+interface ProductByIdRes {
+  product: Product;
 }
 
 export const fetchProduct = async (typeId: string) => {
@@ -19,12 +26,27 @@ export const fetchProduct = async (typeId: string) => {
   return data;
 };
 
-export const useQueryProducts = (typeId: string) => {
-  GraphQLSetHeader();
-
-  return useQuery<Product[], Error>({
-    queryKey: "products",
-    queryFn: () => fetchProduct(typeId),
-    staleTime: 0,
+export const fetchProductById = async (typeId: string, id: string) => {
+  // @ts-ignore
+  const { product: data } = await request<ProductByIdRes>(endpoint, GET_PRODUCT_BY_ID, {
+    m_product_type_id: typeId,
+    id: id,
   });
+  return data;
+};
+
+export const useQueryProducts = () => {
+
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const queryClient = new QueryClient();
+
+  const handleMoveToEditPage = (data: Product) => {
+    dispatch(setMonitor(data));
+    router.push(`/monitor/${data.id}`);
+  };
+
+  return {
+    handleMoveToEditPage,
+  };
 };

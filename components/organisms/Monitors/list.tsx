@@ -6,8 +6,11 @@
 import { FC, memo } from "react";
 import { ProductProps } from "../../../types/types";
 import { ButtonMemo } from "../../atoms/Buttons/Button";
+import { useQueryProducts } from "../../../hooks/useQueryProducts";
 
 const MonitorList: FC<ProductProps> = ({ data }) => {
+
+  const { handleMoveToEditPage } = useQueryProducts();
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -63,7 +66,11 @@ const MonitorList: FC<ProductProps> = ({ data }) => {
               {product.unit_price}
             </td>
             <td className="px-6 py-4 text-right">
-              <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+              <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                 onClick={() => handleMoveToEditPage(product)}
+              >
+                Edit
+              </a>
             </td>
           </tr>
         ))}

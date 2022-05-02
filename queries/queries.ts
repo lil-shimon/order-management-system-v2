@@ -94,6 +94,21 @@ query GetProducts($m_product_type_id: uuid!) {
     note
     unit
     unit_price
+    m_product_type_id
+  }
+}
+`;
+
+export const GET_PRODUCT_BY_ID = gql`
+query GetProductById($m_product_type_id: uuid!, $id: uuid!) {
+  products(where: {m_product_type_id: {_eq: $m_product_type_id}, id: {_eq: $id}}) {
+    created_at
+    id
+    name
+    note
+    unit
+    unit_price
+    m_product_type_id
   }
 }
 `;
