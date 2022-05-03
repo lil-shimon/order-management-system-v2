@@ -13,4 +13,6 @@ import "firebase/firestore";
     appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   }) : firebase.app();
 
-export default firebase
+export const storage = firebase.storage();
+
+export default firebase;
