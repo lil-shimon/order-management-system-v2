@@ -9,7 +9,8 @@ import { endpoint } from "../utils/api";
 import { request } from "graphql-request";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { getProductStateHandler } from "../utils/product";
+import { getProductStateHandler, resetProductHandler } from "../utils/product";
+import { resetJitan, resetMeasurement, resetMonitor, resetOther } from "../slicers/documentSlicer";
 
 interface ProductRes {
   products: Product[];
@@ -41,6 +42,14 @@ export const useQueryProducts = () => {
 
   const currentUrl = router.pathname;
 
+  const handleMoveToCreatePage = () => {
+    dispatch(resetMonitor());
+    dispatch(resetMeasurement());
+    dispatch(resetJitan());
+    dispatch(resetOther());
+    router.push(`${currentUrl}/create`);
+  };
+
   const handleMoveToEditPage = (data: Product) => {
     const setProduct = getProductStateHandler(data.m_product_type_id);
     dispatch(setProduct(data));
@@ -50,5 +59,6 @@ export const useQueryProducts = () => {
   return {
     handleMoveToEditPage,
     currentUrl,
+    handleMoveToCreatePage,
   };
 };
