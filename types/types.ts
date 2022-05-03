@@ -44,3 +44,11 @@ export type EditProduct = Pick<Product, "id" | "m_product_type_id" | "name" | "u
 export interface ProductProps {
   data?: Product[];
 }
+
+export interface Logo {
+  id: string;
+  name: string;
+  src: string;
+}
+
+export type EditLogo = Pick<Logo, "name" | "src">
