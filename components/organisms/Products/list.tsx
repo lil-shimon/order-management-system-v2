@@ -10,7 +10,7 @@ import { useQueryProducts } from "../../../hooks/useQueryProducts";
 
 const ProductList: FC<ProductProps> = ({ data }) => {
 
-  const { handleMoveToEditPage, currentUrl } = useQueryProducts();
+  const { handleMoveToEditPage, currentUrl, handleMoveToCreatePage } = useQueryProducts();
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -30,7 +30,7 @@ const ProductList: FC<ProductProps> = ({ data }) => {
                  placeholder="Search for items" />
         </div>
         <div className={"absolute right-2"}>
-          <ButtonMemo href={`${currentUrl}/create`} label={"add"} />
+          <ButtonMemo onClick={() => handleMoveToCreatePage()} label={"add"} />
         </div>
       </div>
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
