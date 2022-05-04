@@ -2,7 +2,7 @@
  * Copyright (c) 2022. Kenta Shimosawa
  */
 
-import { EditLogo, EditProduct, Sidenav } from "../types/types";
+import { EditLogo, EditPostage, EditProduct, Sidenav } from "../types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../selector/store";
 import { JITAN_TYPE, MEASUREMENT_TYPE, OTHER_TYPE } from "../utils/product";
@@ -14,6 +14,7 @@ export interface DocumentState {
   jitan: EditProduct;
   other: EditProduct;
   logo: EditLogo;
+  postage: EditPostage;
 }
 
 const initialState: DocumentState = {
@@ -62,6 +63,13 @@ const initialState: DocumentState = {
     name: "",
     src: "",
   },
+  postage: {
+    id: "",
+    from: "",
+    to: "",
+    size: "",
+    price: 0,
+  },
 };
 
 export const documentSlice = createSlice({
@@ -99,6 +107,12 @@ export const documentSlice = createSlice({
     resetLogo: (state) => {
       state.logo = initialState.logo;
     },
+    setPostage: (state, action: PayloadAction<EditPostage>) => {
+      state.postage = action.payload;
+    },
+    resetPostage: (state) => {
+      state.postage = initialState.postage;
+    },
   },
 });
 
@@ -114,6 +128,8 @@ export const {
   resetOther,
   setLogo,
   resetLogo,
+  setPostage,
+  resetPostage,
 } = documentSlice.actions;
 
 export const sidenavState = (state: RootState) => state.document.sidenav;
@@ -122,5 +138,6 @@ export const measurementState = (state: RootState) => state.document.measurement
 export const jitanState = (state: RootState) => state.document.jitan;
 export const otherState = (state: RootState) => state.document.other;
 export const logoState = (state: RootState) => state.document.logo;
+export const postageState = (state: RootState) => state.document.postage;
 
 export default documentSlice.reducer;
