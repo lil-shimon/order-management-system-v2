@@ -104,7 +104,21 @@ export const UPDATE_LOGO = gql`
             src
         }
     }
-`
+`;
+
+export const GET_POSTAGES = gql`
+    query GetPostages {
+        postages {
+            id
+            from
+            to
+            size
+            price
+            updated_at
+            created_at
+        }
+    }
+`;
 
 
 export const GET_NEWS = gql`

@@ -52,7 +52,23 @@ export interface Logo {
 }
 
 export interface LogoProps {
-  data?: Logo[]
+  data?: Logo[];
 }
 
 export type EditLogo = Pick<Logo, "name" | "src">
+
+export interface Postage {
+  id: string;
+  from: string;
+  to: string;
+  size: string;
+  price: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export type EditPostage = Pick<Postage, "id" | "from" | "to" | "size" | "price">
+
+export interface PostageProps {
+  data?: Postage[];
+}
