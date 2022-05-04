@@ -5,13 +5,16 @@
 import { FC, memo } from "react";
 import { LogoProps } from "../../../types/types";
 import { ButtonMemo } from "../../atoms/Buttons/Button";
+import { useFileUpload } from "../../../hooks/useFileUpload";
 
 const LogoList: FC<LogoProps> = ({ data }) => {
+
+  const { handleMoveToCreate } = useFileUpload();
 
   return (
     <div className={"flex"}>
       <div className={"absolute right-2"}>
-        <ButtonMemo onClick={() => console.log("add")} label={"add"} />
+        <ButtonMemo onClick={handleMoveToCreate} label={"add"} />
       </div>
       <div className={"flex flex-wrap pt-20"}>
         {data?.map((logo) => (
