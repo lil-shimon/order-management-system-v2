@@ -5,7 +5,7 @@
 import { useRouter } from "next/router";
 
 export const useFileUpload = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   // move to logo hook
   const handleMoveToCreate = () => {
