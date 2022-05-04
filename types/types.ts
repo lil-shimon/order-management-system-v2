@@ -51,4 +51,8 @@ export interface Logo {
   src: string;
 }
 
+export interface LogoProps {
+  data?: Logo[]
+}
+
 export type EditLogo = Pick<Logo, "name" | "src">
