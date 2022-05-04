@@ -2,7 +2,7 @@
  * Copyright (c) 2022. Kenta Shimosawa
  */
 
-import { EditProduct, Sidenav } from "../types/types";
+import { EditLogo, EditProduct, Sidenav } from "../types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../selector/store";
 import { JITAN_TYPE, MEASUREMENT_TYPE, OTHER_TYPE } from "../utils/product";
@@ -13,6 +13,7 @@ export interface DocumentState {
   measurement: EditProduct;
   jitan: EditProduct;
   other: EditProduct;
+  logo: EditLogo;
 }
 
 const initialState: DocumentState = {
@@ -57,6 +58,10 @@ const initialState: DocumentState = {
     unit_price: 0,
     note: "",
   },
+  logo: {
+    name: "",
+    src: "",
+  },
 };
 
 export const documentSlice = createSlice({
@@ -88,6 +93,12 @@ export const documentSlice = createSlice({
     resetOther: (state) => {
       state.other = initialState.other;
     },
+    setLogo: (state, action: PayloadAction<EditLogo>) => {
+      state.logo = action.payload;
+    },
+    resetLogo: (state) => {
+      state.logo = initialState.logo;
+    },
   },
 });
 
@@ -101,6 +112,8 @@ export const {
   resetJitan,
   setOther,
   resetOther,
+  setLogo,
+  resetLogo,
 } = documentSlice.actions;
 
 export const sidenavState = (state: RootState) => state.document.sidenav;
@@ -108,5 +121,6 @@ export const monitorState = (state: RootState) => state.document.monitor;
 export const measurementState = (state: RootState) => state.document.measurement;
 export const jitanState = (state: RootState) => state.document.jitan;
 export const otherState = (state: RootState) => state.document.other;
+export const logoState = (state: RootState) => state.document.logo;
 
 export default documentSlice.reducer;

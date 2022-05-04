@@ -11,9 +11,9 @@ const LogoComponent: FC<LogoProps> = ({ data }) => {
 
   return (
     <DocumentPageLayout>
-      <LogoListMemo data={data}/>
+      <LogoListMemo data={data} />
     </DocumentPageLayout>
-  )
-}
+  );
+};
 
-export const LogoComponentMemo = memo(LogoComponent)
+export const LogoComponentMemo = memo(LogoComponent);
