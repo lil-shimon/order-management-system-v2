@@ -75,13 +75,15 @@ const initialState: DocumentState = {
   company: {
     id: "",
     name: "",
-    address: null,
-    phone: null,
-    due: null,
-    cycle: null,
-    receive_way: null,
-    transfer_way: null,
-    date: null,
+    address: "",
+    phone: "",
+    due: "",
+    cycle: "",
+    receive_way: "",
+    transfer_way: "",
+    date: "",
+    note: "",
+    invoice: "",
   },
 };
 

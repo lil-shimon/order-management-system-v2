@@ -76,13 +76,15 @@ export interface PostageProps {
 export interface Company {
   id: string;
   name: string;
-  address: string | null;
-  phone: string | null;
-  due: string | null;
-  cycle: string | null;
-  receive_way: string | null;
-  transfer_way: string | null;
-  date: string | null;
+  address: string;
+  phone: string;
+  due: string;
+  cycle: string;
+  receive_way: string;
+  transfer_way: string;
+  date: string;
+  note: string;
+  invoice: string;
   created_at: string;
   updated_at: string;
 }

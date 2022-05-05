@@ -161,14 +161,16 @@ export const GET_COMPANIES = gql`
             phone
             receive_way
             transfer_way
+            note
+            invoice
             updated_at
         }
     }
 `;
 
 export const CREATE_COMPANY = gql`
-    mutation CreateCompany($address: String, $cycle: String, $date: String, $due: String, $name: String!, $receive_way: String, $transfer_way: String) {
-        insert_companies_one(object: {address: $address, cycle: $cycle, date: $date, due: $due, name: $name, phone: $phone, receive_way: $receive_way, transfer_way: $transfer_way}) {
+    mutation CreateCompany($address: String, $cycle: String, $date: String, $due: String, $name: String!, $receive_way: String, $transfer_way: String, $note: String, $invoice: String, $phone: String) {
+        insert_companies_one(object: {address: $address, cycle: $cycle, date: $date, due: $due, name: $name, phone: $phone, receive_way: $receive_way, transfer_way: $transfer_way, note: $note, invoice: $invoice}) {
             address
             created_at
             cycle
@@ -178,6 +180,8 @@ export const CREATE_COMPANY = gql`
             phone
             receive_way
             transfer_way
+            note
+            invoice
             updated_at
             created_at
         }
@@ -185,8 +189,8 @@ export const CREATE_COMPANY = gql`
 `;
 
 export const UPDATE_COMPANY = gql`
-    mutation MyMutation($id: uuid!, $address: String, $cycle: String, $date: String, $due: String, $name: String!, $receive_way: String, $transfer_way: String) {
-        update_companies_by_pk(pk_columns: {id: $id}, _set: {address: $address, cycle: $cycle, date: $date, due: $due, name: $name, phone: $phone, receive_way: $receive_way, transfer_way: $transfer_way}) {
+    mutation MyMutation($id: uuid!, $address: String, $cycle: String, $date: String, $due: String, $name: String!, $receive_way: String, $transfer_way: String, $note: String , $invoice: String) {
+        update_companies_by_pk(pk_columns: {id: $id}, _set: {address: $address, cycle: $cycle, date: $date, due: $due, name: $name, phone: $phone, receive_way: $receive_way, transfer_way: $transfer_way, note: $note, invoice: $invoice}) {
             address
             cycle
             date
@@ -196,6 +200,8 @@ export const UPDATE_COMPANY = gql`
             phone
             receive_way
             transfer_way
+            note
+            invoice
             updated_at
             created_at
         }

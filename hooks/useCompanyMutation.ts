@@ -24,6 +24,7 @@ export const useCompanyMutation = () => {
     phone: company.phone,
     receive_way: company.receive_way,
     transfer_way: company.transfer_way,
+    note: company.note,
   }), {
     onSuccess: (res) => {
       const prev = queryClient.getQueryData<Company[]>("companies");
@@ -46,6 +47,7 @@ export const useCompanyMutation = () => {
     phone: company.phone,
     receive_way: company.receive_way,
     transfer_way: company.transfer_way,
+    note: company.note,
   }), {
     onSuccess: (res, variables) => {
       const prev = queryClient.getQueryData<Company[]>("companies");
