@@ -5,18 +5,18 @@
 
 import { FC } from "react";
 import { Layout } from "../../components/Layout";
-import { DocumentComponent } from "../../components/templete/Document";
 import { GetStaticProps } from "next";
 import { dehydrate, QueryClient, useQueryClient } from "react-query";
 import { fetchDocument } from "../../hooks/useQueryDocument";
+import { DocumentComponentMemo } from "../../components/templete/Document";
+import { Document } from "../../types/types";
 
 const Document: FC = () => {
   const queryClient = useQueryClient();
   const data = queryClient.getQueryData<Document[]>("documents");
-  console.log("data", data);
   return (
     <Layout title={"document"}>
-      <DocumentComponent />
+      <DocumentComponentMemo data={data} />
     </Layout>
   );
 };

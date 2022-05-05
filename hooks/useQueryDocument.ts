@@ -5,6 +5,7 @@
 import { request } from "graphql-request";
 import { endpoint } from "../utils/api";
 import { GET_DOCUMENTS } from "../queries/queries";
+import { Document } from "../types/types";
 
 interface DocumentRes {
   documents: Document[];

@@ -52,6 +52,10 @@ export interface News {
 
 export type EditNews = Pick<News, "id" | "content">
 
+export interface DocumentProps {
+  data?: Document[];
+}
+
 export interface Task {
   id: string;
   title: string;
