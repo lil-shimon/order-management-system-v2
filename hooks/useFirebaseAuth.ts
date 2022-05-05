@@ -40,7 +40,7 @@ export const useFirebaseAuth = () => {
     if (isLogin) {
       try {
         await firebase.auth().signInWithEmailAndPassword(email, password);
-        await router.push("/tasks")
+        await router.push("/document")
       } catch ({ message }) {
         alert(message);
       }
@@ -48,7 +48,7 @@ export const useFirebaseAuth = () => {
     } else {
       try {
         await firebase.auth().createUserWithEmailAndPassword(email, password);
-        await router.push("/tasks")
+        await router.push("/document")
       } catch ({ message }) {
         alert(message);
       }
