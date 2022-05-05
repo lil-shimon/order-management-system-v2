@@ -147,6 +147,8 @@ export interface User {
   name: string;
 }
 
+export type EditUser = Omit<User, "user_id">
+
 export interface UserProps {
   data?: User[];
 }

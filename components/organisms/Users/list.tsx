@@ -4,8 +4,12 @@
 
 import { FC, memo } from "react";
 import { UserProps } from "../../../types/types";
+import { ButtonMemo } from "../../atoms/Buttons/Button";
+import { useQueryUser } from "../../../hooks/useQueryUser";
 
 const UserList: FC<UserProps> = ({ data }) => {
+
+  const { handleMoveToCreate, handleMoveToEdit } = useQueryUser();
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -25,6 +29,7 @@ const UserList: FC<UserProps> = ({ data }) => {
                  placeholder="Search for items" />
         </div>
         <div className={"absolute right-2"}>
+          <ButtonMemo onClick={() => handleMoveToCreate()} label={"add"} />
         </div>
       </div>
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -49,6 +54,7 @@ const UserList: FC<UserProps> = ({ data }) => {
             </th>
             <td className="px-6 py-4 text-right">
               <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                 onClick={() => handleMoveToEdit(user)}
               >
                 Edit
               </a>

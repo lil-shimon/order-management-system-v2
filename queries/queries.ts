@@ -330,3 +330,23 @@ export const GET_USERS = gql`
         }
     }
 `;
+
+export const CREATE_USER = gql`
+    mutation CreateUser($name: String!) {
+        insert_users_one(object: {name: $name}) {
+            id
+            name
+            user_id
+        }
+    }
+`;
+
+export const UPDATE_USER = gql`
+    mutation UpdateUser($id: uuid!, $name: String!) {
+        update_users_by_pk(pk_columns: {id: $id}, _set: {name: $name}) {
+            id
+            name
+            user_id
+        }
+    }
+`;
