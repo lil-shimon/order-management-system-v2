@@ -8,7 +8,7 @@ import { request } from "graphql-request";
 import { GET_POSTAGES } from "../queries/queries";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { resetPostage } from "../slicers/documentSlicer";
+import { resetPostage, setPostage } from "../slicers/documentSlicer";
 
 interface PostageRes {
   postages: Postage[];
@@ -29,7 +29,13 @@ export const useQueryPostage = () => {
     router.push("/postage/create");
   };
 
+  const handleMoveToEdit = (postage: Postage) => {
+    dispatch(setPostage(postage));
+    router.push(`/postage/${postage.id}`);
+  };
+
   return {
     handleMoveToCreate,
+    handleMoveToEdit,
   };
 };
