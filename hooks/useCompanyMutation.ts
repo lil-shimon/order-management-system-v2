@@ -25,6 +25,7 @@ export const useCompanyMutation = () => {
     receive_way: company.receive_way,
     transfer_way: company.transfer_way,
     note: company.note,
+    invoice: company.invoice,
   }), {
     onSuccess: (res) => {
       const prev = queryClient.getQueryData<Company[]>("companies");
@@ -48,6 +49,7 @@ export const useCompanyMutation = () => {
     receive_way: company.receive_way,
     transfer_way: company.transfer_way,
     note: company.note,
+    invoice: company.invoice,
   }), {
     onSuccess: (res, variables) => {
       const prev = queryClient.getQueryData<Company[]>("companies");
