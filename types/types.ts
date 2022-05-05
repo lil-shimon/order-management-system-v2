@@ -94,3 +94,45 @@ export type EditCompany = Omit<Company, "created_at" | "updated_at">
 export interface CompanyProps {
   data?: Company[];
 }
+
+export interface User {
+  id: string;
+  user_id: string;
+  name: string;
+}
+
+export interface UserProps {
+  data?: User[]
+}
+
+export interface DocumentPostage {
+  id: string
+  document_id: string
+  postage_id: string
+}
+
+export interface DocumentProduct {
+  id: string
+  document_id: string
+  product_id: string
+}
+
+export interface Document {
+  id: string
+  document_id: number
+  company_id: string
+  honorific_title: string
+  title: string
+  logo_id: string
+  expiration: string
+  condition: string
+  usage_period: string
+  start_at: Date
+  end_at: Date
+  note: string
+  user_id: string
+  created_at: string
+  updated_at: string
+}
+
+export type EditDocument = Omit<Document, "created_at" | "updated_at">
