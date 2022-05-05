@@ -25,6 +25,7 @@ const initialState: DocumentState = {
     { name: "JITAN", href: "/jitan" },
     { name: "Postage", href: "/postage" },
     { name: "Logo", href: "/logo" },
+    { name: "Companies", href: "/company" },
     { name: "Others", href: "/other" },
   ],
   monitor: {
