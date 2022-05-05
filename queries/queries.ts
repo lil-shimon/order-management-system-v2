@@ -320,3 +320,13 @@ export const DELETE_TASK = gql`
         }
     }
 `;
+
+export const GET_USERS = gql`
+    query GetUsers {
+        users {
+            id
+            name
+            user_id
+        }
+    }
+`;

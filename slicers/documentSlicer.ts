@@ -28,6 +28,7 @@ const initialState: DocumentState = {
     { name: "Logo", href: "/logo" },
     { name: "Companies", href: "/company" },
     { name: "Others", href: "/other" },
+    { name: "User", href: "/user" },
   ],
   monitor: {
     id: "",
