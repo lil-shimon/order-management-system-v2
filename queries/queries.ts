@@ -166,6 +166,41 @@ export const GET_COMPANIES = gql`
     }
 `;
 
+export const CREATE_COMPANY = gql`
+    mutation CreateCompany($address: String, $cycle: String, $date: String, $due: String, $name: String!, $receive_way: String, $transfer_way: String) {
+        insert_companies_one(object: {address: $address, cycle: $cycle, date: $date, due: $due, name: $name, phone: $phone, receive_way: $receive_way, transfer_way: $transfer_way}) {
+            address
+            created_at
+            cycle
+            date
+            due
+            name
+            phone
+            receive_way
+            transfer_way
+            updated_at
+            created_at
+        }
+    }
+`;
+
+export const UPDATE_COMPANY = gql`
+    mutation MyMutation($id: uuid!, $address: String, $cycle: String, $date: String, $due: String, $name: String!, $receive_way: String, $transfer_way: String) {
+        update_companies_by_pk(pk_columns: {id: $id}, _set: {address: $address, cycle: $cycle, date: $date, due: $due, name: $name, phone: $phone, receive_way: $receive_way, transfer_way: $transfer_way}) {
+            address
+            cycle
+            date
+            due
+            id
+            name
+            phone
+            receive_way
+            transfer_way
+            updated_at
+            created_at
+        }
+    }
+`;
 
 export const GET_NEWS = gql`
     query GetNews {
