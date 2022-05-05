@@ -150,3 +150,7 @@ export interface User {
 export interface UserProps {
   data?: User[];
 }
+
+export interface UserRes {
+  users: User[];
+}
