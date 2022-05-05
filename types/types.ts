@@ -72,3 +72,25 @@ export type EditPostage = Pick<Postage, "id" | "from" | "to" | "size" | "price">
 export interface PostageProps {
   data?: Postage[];
 }
+
+export interface Company {
+  id: string;
+  name: string;
+  address: string;
+  phone: string;
+  due: string;
+  cycle: string;
+  receive_way: string;
+  transfer_way: string;
+  date: string;
+  note: string;
+  invoice: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export type EditCompany = Omit<Company, "created_at" | "updated_at">
+
+export interface CompanyProps {
+  data?: Company[];
+}

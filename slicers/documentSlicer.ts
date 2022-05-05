@@ -2,7 +2,7 @@
  * Copyright (c) 2022. Kenta Shimosawa
  */
 
-import { EditLogo, EditPostage, EditProduct, Sidenav } from "../types/types";
+import { EditCompany, EditLogo, EditPostage, EditProduct, Sidenav } from "../types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../selector/store";
 import { JITAN_TYPE, MEASUREMENT_TYPE, OTHER_TYPE } from "../utils/product";
@@ -15,6 +15,7 @@ export interface DocumentState {
   other: EditProduct;
   logo: EditLogo;
   postage: EditPostage;
+  company: EditCompany;
 }
 
 const initialState: DocumentState = {
@@ -25,6 +26,7 @@ const initialState: DocumentState = {
     { name: "JITAN", href: "/jitan" },
     { name: "Postage", href: "/postage" },
     { name: "Logo", href: "/logo" },
+    { name: "Companies", href: "/company" },
     { name: "Others", href: "/other" },
   ],
   monitor: {
@@ -70,6 +72,19 @@ const initialState: DocumentState = {
     size: "",
     price: 0,
   },
+  company: {
+    id: "",
+    name: "",
+    address: "",
+    phone: "",
+    due: "",
+    cycle: "",
+    receive_way: "",
+    transfer_way: "",
+    date: "",
+    note: "",
+    invoice: "",
+  },
 };
 
 export const documentSlice = createSlice({
@@ -113,6 +128,12 @@ export const documentSlice = createSlice({
     resetPostage: (state) => {
       state.postage = initialState.postage;
     },
+    setCompany: (state, action: PayloadAction<EditCompany>) => {
+      state.company = action.payload;
+    },
+    resetCompany: (state) => {
+      state.company = initialState.company;
+    },
   },
 });
 
@@ -130,6 +151,8 @@ export const {
   resetLogo,
   setPostage,
   resetPostage,
+  setCompany,
+  resetCompany,
 } = documentSlice.actions;
 
 export const sidenavState = (state: RootState) => state.document.sidenav;
@@ -139,5 +162,6 @@ export const jitanState = (state: RootState) => state.document.jitan;
 export const otherState = (state: RootState) => state.document.other;
 export const logoState = (state: RootState) => state.document.logo;
 export const postageState = (state: RootState) => state.document.postage;
+export const companyState = (state: RootState) => state.document.company;
 
 export default documentSlice.reducer;
