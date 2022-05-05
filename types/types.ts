@@ -2,6 +2,48 @@
  * Copyright (c) 2022. Kenta Shimosawa
  */
 
+export interface DocumentPostage {
+  id: string;
+  document_id: string;
+  postage_id: string;
+}
+
+export interface DocumentProduct {
+  id: string;
+  document_id: string;
+  product_id: string;
+}
+
+type DocumentCompany = Pick<Company, "name">
+
+type DocumentLogo = Pick<Logo, "name" | "src">
+
+type DocumentUser = Pick<User, "name" | "user_id">
+
+export interface Document {
+  id: string;
+  document_id: number;
+  company_id: string;
+  company: DocumentCompany;
+  honorific_title: string;
+  title: string;
+  logo_id: string;
+  logo: DocumentLogo;
+  expiration: string;
+  condition: string;
+  usage_period: string;
+  start_at: Date;
+  end_at: Date;
+  note: string;
+  user_id: string;
+  user: DocumentUser;
+  created_at: string;
+  updated_at: string;
+}
+
+
+export type EditDocument = Omit<Document, "created_at" | "updated_at">
+
 export interface News {
   id: string;
   content: string;
@@ -102,37 +144,5 @@ export interface User {
 }
 
 export interface UserProps {
-  data?: User[]
+  data?: User[];
 }
-
-export interface DocumentPostage {
-  id: string
-  document_id: string
-  postage_id: string
-}
-
-export interface DocumentProduct {
-  id: string
-  document_id: string
-  product_id: string
-}
-
-export interface Document {
-  id: string
-  document_id: number
-  company_id: string
-  honorific_title: string
-  title: string
-  logo_id: string
-  expiration: string
-  condition: string
-  usage_period: string
-  start_at: Date
-  end_at: Date
-  note: string
-  user_id: string
-  created_at: string
-  updated_at: string
-}
-
-export type EditDocument = Omit<Document, "created_at" | "updated_at">
