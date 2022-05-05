@@ -4,11 +4,12 @@
 
 
 import { FC, memo } from "react";
+import { DocumentProps } from "../../../types/types";
 
-const DocumentList: FC= () => {
+const DocumentList: FC<DocumentProps> = ({ data }) => {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <div className="p-4">
+      <div className="p-4 flex">
         <label htmlFor="table-search" className="sr-only">Search</label>
         <div className="relative mt-1">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -23,28 +24,21 @@ const DocumentList: FC= () => {
                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                  placeholder="Search for items" />
         </div>
+        <div className={"absolute right-2"}>
+          {/* <ButtonMemo onClick={() => handleMoveToCreatePage()} label={"add"} /> */}
+        </div>
       </div>
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
-          <th scope="col" className="p-4">
-            <div className="flex items-center">
-              <input id="checkbox-all-search" type="checkbox"
-                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label htmlFor="checkbox-all-search" className="sr-only">checkbox</label>
-            </div>
+          <th scope="col" className="px-6 py-3">
+            Title
           </th>
           <th scope="col" className="px-6 py-3">
-            Product name
+            Company name
           </th>
           <th scope="col" className="px-6 py-3">
-            Color
-          </th>
-          <th scope="col" className="px-6 py-3">
-            Category
-          </th>
-          <th scope="col" className="px-6 py-3">
-            Price
+            User
           </th>
           <th scope="col" className="px-6 py-3">
             <span className="sr-only">Edit</span>
@@ -52,82 +46,33 @@ const DocumentList: FC= () => {
         </tr>
         </thead>
         <tbody>
-        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-          <td className="w-4 p-4">
-            <div className="flex items-center">
-              <input id="checkbox-table-search-1" type="checkbox"
-                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label htmlFor="checkbox-table-search-1" className="sr-only">checkbox</label>
-            </div>
-          </td>
-          <th scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-            Apple MacBook Pro 17
-          </th>
-          <td className="px-6 py-4">
-            Sliver
-          </td>
-          <td className="px-6 py-4">
-            Laptop
-          </td>
-          <td className="px-6 py-4">
-            $2999
-          </td>
-          <td className="px-6 py-4 text-right">
-            <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-          </td>
-        </tr>
-        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-          <td className="w-4 p-4">
-            <div className="flex items-center">
-              <input id="checkbox-table-search-2" type="checkbox"
-                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label htmlFor="checkbox-table-search-2" className="sr-only">checkbox</label>
-            </div>
-          </td>
-          <th scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-            Microsoft Surface Pro
-          </th>
-          <td className="px-6 py-4">
-            White
-          </td>
-          <td className="px-6 py-4">
-            Laptop PC
-          </td>
-          <td className="px-6 py-4">
-            $1999
-          </td>
-          <td className="px-6 py-4 text-right">
-            <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-          </td>
-        </tr>
-        <tr className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-          <td className="w-4 p-4">
-            <div className="flex items-center">
-              <input id="checkbox-table-search-3" type="checkbox"
-                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label htmlFor="checkbox-table-search-3" className="sr-only">checkbox</label>
-            </div>
-          </td>
-          <th scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-            Magic Mouse 2
-          </th>
-          <td className="px-6 py-4">
-            Black
-          </td>
-          <td className="px-6 py-4">
-            Accessories
-          </td>
-          <td className="px-6 py-4">
-            $99
-          </td>
-          <td className="px-6 py-4 text-right">
-            <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-          </td>
-        </tr>
+        {data?.map((document) => (
+          <tr
+            className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+            key={document.id}
+          >
+            <th scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+              {document.title}
+            </th>
+            <td className="px-6 py-4">
+              {document.company.name}
+            </td>
+            <td className="px-6 py-4">
+              {document.user.name}
+            </td>
+            <td className="px-6 py-4 text-right">
+              <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+//                 onClick={() => handleMoveToEditPage(document)}
+              >
+                Edit
+              </a>
+            </td>
+          </tr>
+        ))}
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export const DocumentListMemo = memo(DocumentList)
+export const DocumentListMemo = memo(DocumentList);

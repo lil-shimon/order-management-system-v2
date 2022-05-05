@@ -4,6 +4,38 @@
 
 import { gql } from "graphql-request";
 
+export const GET_DOCUMENTS = gql`
+    query GetDocuments {
+        documents {
+            company_id
+            condition
+            created_at
+            document_id
+            end_at
+            expiration
+            honorific_title
+            id
+            logo_id
+            note
+            start_at
+            title
+            user_id
+            usage_period
+            updated_at
+            user {
+                name
+                user_id
+            }
+            logo {
+                name
+                src
+            }
+            company {
+                name
+            }
+        }
+    }
+`;
 
 export const GET_PRODUCTS_BY_TYPE = gql`
     query GetProducts($m_product_type_id: uuid!) {
