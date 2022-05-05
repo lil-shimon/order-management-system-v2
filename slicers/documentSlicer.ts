@@ -2,7 +2,7 @@
  * Copyright (c) 2022. Kenta Shimosawa
  */
 
-import { EditCompany, EditLogo, EditPostage, EditProduct, Sidenav } from "../types/types";
+import { EditCompany, EditLogo, EditPostage, EditProduct, EditUser, Sidenav } from "../types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../selector/store";
 import { JITAN_TYPE, MEASUREMENT_TYPE, OTHER_TYPE } from "../utils/product";
@@ -16,6 +16,7 @@ export interface DocumentState {
   logo: EditLogo;
   postage: EditPostage;
   company: EditCompany;
+  user: EditUser;
 }
 
 const initialState: DocumentState = {
@@ -86,6 +87,10 @@ const initialState: DocumentState = {
     note: "",
     invoice: "",
   },
+  user: {
+    id: "",
+    name: "",
+  },
 };
 
 export const documentSlice = createSlice({
@@ -135,6 +140,12 @@ export const documentSlice = createSlice({
     resetCompany: (state) => {
       state.company = initialState.company;
     },
+    setUser: (state, action: PayloadAction<EditUser>) => {
+      state.user = action.payload;
+    },
+    resetUser: (state) => {
+      state.user = initialState.user;
+    },
   },
 });
 
@@ -154,6 +165,8 @@ export const {
   resetPostage,
   setCompany,
   resetCompany,
+  setUser,
+  resetUser,
 } = documentSlice.actions;
 
 export const sidenavState = (state: RootState) => state.document.sidenav;
@@ -164,5 +177,6 @@ export const otherState = (state: RootState) => state.document.other;
 export const logoState = (state: RootState) => state.document.logo;
 export const postageState = (state: RootState) => state.document.postage;
 export const companyState = (state: RootState) => state.document.company;
+export const userState = (state: RootState) => state.document.user;
 
 export default documentSlice.reducer;
