@@ -189,7 +189,7 @@ export const CREATE_COMPANY = gql`
 `;
 
 export const UPDATE_COMPANY = gql`
-    mutation MyMutation($id: uuid!, $address: String, $cycle: String, $date: String, $due: String, $name: String!, $receive_way: String, $transfer_way: String, $note: String , $invoice: String) {
+    mutation UpdateCompany($id: uuid!, $address: String, $cycle: String, $date: String, $due: String, $name: String!, $receive_way: String, $transfer_way: String, $note: String , $invoice: String, $phone: String) {
         update_companies_by_pk(pk_columns: {id: $id}, _set: {address: $address, cycle: $cycle, date: $date, due: $due, name: $name, phone: $phone, receive_way: $receive_way, transfer_way: $transfer_way, note: $note, invoice: $invoice}) {
             address
             cycle
