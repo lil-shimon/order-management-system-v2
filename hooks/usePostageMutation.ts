@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { useMutation, useQueryClient } from "react-query";
 import { EditPostage, Postage } from "../types/types";
 import { graphQLClient, GraphQLSetHeader } from "../utils/api";
-import { CREATE_POSTAGE } from "../queries/queries";
+import { CREATE_POSTAGE, UPDATE_POSTAGE } from "../queries/queries";
 import { resetPostage } from "../slicers/documentSlicer";
 
 export const usePostageMutation = () => {
@@ -32,7 +32,26 @@ export const usePostageMutation = () => {
     },
   });
 
+  const updatePostageMutation = useMutation((postage: EditPostage) => graphQLClient.request(UPDATE_POSTAGE, {
+    id: postage.id,
+    from: postage.from,
+    to: postage.to,
+    size: postage.size,
+    price: postage.price,
+  }), {
+    onSuccess: (res, variables) => {
+      const prev = queryClient.getQueryData<Postage[]>("postages");
+      if (prev)
+        queryClient.setQueryData<Postage[]>("postages", prev.map((postage) => postage.id === variables.id ? res.update_postages_by_pk : postage));
+      dispatch(resetPostage());
+    },
+    onError: () => {
+      alert("Error");
+    },
+  });
+
   return {
     createPostageMutation,
+    updatePostageMutation,
   };
 };

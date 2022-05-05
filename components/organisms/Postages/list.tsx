@@ -10,7 +10,7 @@ import { ButtonMemo } from "../../atoms/Buttons/Button";
 
 const PostageList: FC<PostageProps> = ({ data }) => {
 
-  const { handleMoveToCreate } = useQueryPostage();
+  const { handleMoveToCreate, handleMoveToEdit } = useQueryPostage();
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -73,7 +73,7 @@ const PostageList: FC<PostageProps> = ({ data }) => {
             </td>
             <td className="px-6 py-4 text-right">
               <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                //                 onClick={() => handleMoveToEditPage(postage)}
+                 onClick={() => handleMoveToEdit(postage)}
               >
                 Edit
               </a>

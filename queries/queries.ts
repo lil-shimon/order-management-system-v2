@@ -134,6 +134,20 @@ export const CREATE_POSTAGE = gql`
     }
 `;
 
+export const UPDATE_POSTAGE = gql`
+    mutation UpdatePostage($id: uuid!, $from: String!, $to: String!, $size: String!, $price: Int!) {
+        update_postages_by_pk(pk_columns: {id: $id}, _set: {from: $from, to: $to, size: $size, price: $price}) {
+            id
+            from
+            to
+            size
+            price
+            created_at
+            updated_at
+        }
+    }
+`;
+
 
 export const GET_NEWS = gql`
     query GetNews {

@@ -15,14 +15,14 @@ interface Props {
 
 const PostageFormScreen: FC<Props> = ({ postage }) => {
   const dispatch = useDispatch();
-  const { createPostageMutation } = usePostageMutation();
+  const { createPostageMutation, updatePostageMutation } = usePostageMutation();
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (postage.id === "")
       createPostageMutation.mutate(postage);
     if (postage.id !== "")
-      console.log("edit");
+      updatePostageMutation.mutate(postage);
   };
 
   return (
