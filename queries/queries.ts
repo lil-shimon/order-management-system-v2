@@ -148,6 +148,24 @@ export const UPDATE_POSTAGE = gql`
     }
 `;
 
+export const GET_COMPANIES = gql`
+    query GetCompanies {
+        companies {
+            address
+            created_at
+            cycle
+            date
+            due
+            id
+            name
+            phone
+            receive_way
+            transfer_way
+            updated_at
+        }
+    }
+`;
+
 
 export const GET_NEWS = gql`
     query GetNews {
