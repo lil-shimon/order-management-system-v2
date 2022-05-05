@@ -120,6 +120,20 @@ export const GET_POSTAGES = gql`
     }
 `;
 
+export const CREATE_POSTAGE = gql`
+    mutation CreatePostage($from: String!, $to: String!, $size: String!, $price: Int!) {
+        insert_postages_one(object: {from: $from, to: $to, size: $size, price: $price}) {
+            id
+            from
+            to
+            size
+            price
+            created_at
+            updated_at
+        }
+    }
+`;
+
 
 export const GET_NEWS = gql`
     query GetNews {

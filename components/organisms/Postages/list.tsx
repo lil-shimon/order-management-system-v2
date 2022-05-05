@@ -5,8 +5,12 @@
 
 import { FC, memo } from "react";
 import { PostageProps } from "../../../types/types";
+import { useQueryPostage } from "../../../hooks/useQueryPostage";
+import { ButtonMemo } from "../../atoms/Buttons/Button";
 
 const PostageList: FC<PostageProps> = ({ data }) => {
+
+  const { handleMoveToCreate } = useQueryPostage();
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -25,9 +29,9 @@ const PostageList: FC<PostageProps> = ({ data }) => {
                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                  placeholder="Search for items" />
         </div>
-        {/* <div className={"absolute right-2"}> */}
-        {/*   <ButtonMemo onClick={() => handleMoveToCreatePage()} label={"add"} /> */}
-        {/* </div> */}
+        <div className={"absolute right-2"}>
+          <ButtonMemo onClick={() => handleMoveToCreate()} label={"add"} />
+        </div>
       </div>
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
