@@ -2,7 +2,7 @@
  * Copyright (c) 2022. Kenta Shimosawa
  */
 
-import { EditCompany, EditLogo, EditPostage, EditProduct, Sidenav } from "../types/types";
+import { EditCompany, EditDocument, EditLogo, EditPostage, EditProduct, Sidenav } from "../types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../selector/store";
 import { JITAN_TYPE, MEASUREMENT_TYPE, OTHER_TYPE } from "../utils/product";
@@ -16,6 +16,7 @@ export interface DocumentState {
   logo: EditLogo;
   postage: EditPostage;
   company: EditCompany;
+  document: EditDocument;
 }
 
 const initialState: DocumentState = {
@@ -85,6 +86,23 @@ const initialState: DocumentState = {
     note: "",
     invoice: "",
   },
+  document: {
+    id: "",
+    company_id: "",
+    company: { name: "" },
+    honorific_title: "御中",
+    title: "",
+    logo_id: "",
+    logo: { name: "", src: "" },
+    expiration: "60日",
+    condition: "打合せの上",
+    usage_period: "",
+    start_at: "",
+    end_at: "",
+    note: "※上記の金額は、あくまで基本価格になりますので、詳細はお打ち合わせ後に調整する可能性がございます。",
+    user_id: "",
+    user: { name: "", user_id: "" },
+  },
 };
 
 export const documentSlice = createSlice({
@@ -134,6 +152,12 @@ export const documentSlice = createSlice({
     resetCompany: (state) => {
       state.company = initialState.company;
     },
+    setDocument: (state, action: PayloadAction<EditDocument>) => {
+      state.document = action.payload;
+    },
+    resetDocument: (state) => {
+      state.document = initialState.document;
+    },
   },
 });
 
@@ -153,6 +177,8 @@ export const {
   resetPostage,
   setCompany,
   resetCompany,
+  setDocument,
+  resetDocument,
 } = documentSlice.actions;
 
 export const sidenavState = (state: RootState) => state.document.sidenav;
@@ -163,5 +189,6 @@ export const otherState = (state: RootState) => state.document.other;
 export const logoState = (state: RootState) => state.document.logo;
 export const postageState = (state: RootState) => state.document.postage;
 export const companyState = (state: RootState) => state.document.company;
+export const documentState = (state: RootState) => state.document.document;
 
 export default documentSlice.reducer;

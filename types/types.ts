@@ -32,8 +32,8 @@ export interface Document {
   expiration: string;
   condition: string;
   usage_period: string;
-  start_at: Date;
-  end_at: Date;
+  start_at: string;
+  end_at: string;
   note: string;
   user_id: string;
   user: DocumentUser;
@@ -42,7 +42,7 @@ export interface Document {
 }
 
 
-export type EditDocument = Omit<Document, "created_at" | "updated_at">
+export type EditDocument = Omit<Document, "created_at" | "updated_at" | "document_id">
 
 export interface News {
   id: string;

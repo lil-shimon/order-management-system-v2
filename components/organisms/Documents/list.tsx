@@ -5,8 +5,13 @@
 
 import { FC, memo } from "react";
 import { DocumentProps } from "../../../types/types";
+import { useQueryDocument } from "../../../hooks/useQueryDocument";
+import { ButtonMemo } from "../../atoms/Buttons/Button";
 
 const DocumentList: FC<DocumentProps> = ({ data }) => {
+
+  const { handleMoveToCreate, handleMoveToEdit } = useQueryDocument()
+
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <div className="p-4 flex">
@@ -25,7 +30,7 @@ const DocumentList: FC<DocumentProps> = ({ data }) => {
                  placeholder="Search for items" />
         </div>
         <div className={"absolute right-2"}>
-          {/* <ButtonMemo onClick={() => handleMoveToCreatePage()} label={"add"} /> */}
+          <ButtonMemo onClick={() => handleMoveToCreate()} label={"add"} />
         </div>
       </div>
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -62,7 +67,7 @@ const DocumentList: FC<DocumentProps> = ({ data }) => {
             </td>
             <td className="px-6 py-4 text-right">
               <a className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-//                 onClick={() => handleMoveToEditPage(document)}
+                 onClick={() => handleMoveToEdit(document)}
               >
                 Edit
               </a>
